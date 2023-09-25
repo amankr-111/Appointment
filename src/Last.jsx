@@ -109,75 +109,29 @@ const Last = () => {
   const [utc1, setUtc1] = useState(false);
 
   const firstSift = [
-    "8:00AM",
-    "8:30AM",
-    "9:00AM",
-    "9:30AM",
-    "10:00AM",
-    "10:30AM",
-    "11:00AM",
-    "11:30AM",
+    "8:00AM", "8:30AM", "9:00AM", "9:30AM", "10:00AM", "10:30AM", "11:00AM", "11:30AM"
   ];
-
+  
   const secondSift = [
-    "12:00PM",
-    "12:30PM",
-    "1:00PM",
-    "1:30PM",
-    "2:00PM",
-    "2:30PM",
-    "3:00PM",
-    "3:30PM",
-    "4:00PM",
-    "4:30PM",
-    "5:00PM",
+    "12:00PM", "12:30PM", "1:00PM", "1:30PM", "2:00PM", "2:30PM", "3:00PM", "3:30PM", "4:00PM", "4:30PM", "5:00PM"
   ];
+  
   const thirdSift = [
-    "7:00PM",
-    "7:30PM",
-    "8:00PM",
-    "8:30PM",
-    "9:00PM",
-    "9:30PM",
-    "10:00PM",
-    "10:30PM",
-    "11:00PM",
+    "7:00PM", "7:30PM", "8:00PM", "8:30PM", "9:00PM", "9:30PM", "10:00PM", "10:30PM", "11:00PM"
   ];
+  
   const usFirstSift = [
-    "11:00AM",
-    "11:30AM",
-    "12:00PM",
-    "12:30PM",
-    "1:00PM",
-    "1:30PM",
-    "2:00PM",
-    "2:30PM",
+    "11:00AM", "11:30AM", "12:00PM", "12:30PM", "1:00PM", "1:30PM", "2:00PM", "2:30PM"
   ];
-
+  
   const usSecondSift = [
-    "3:00PM",
-    "3:30PM",
-    "4:00PM",
-    "4:30PM",
-    "5:00PM",
-    "5:30PM",
-    "6:00PM",
-    "6:30PM",
-    "7:00PM",
-    "7:30PM",
+    "3:00PM", "3:30PM", "4:00PM", "4:30PM", "5:00PM", "5:30PM", "6:00PM", "6:30PM", "7:00PM", "7:30PM"
   ];
-
+  
   const usThirdSift = [
-    "10:00PM",
-    "10:30PM",
-    "11:00PM",
-    "11:30PM",
-    "12:00AM",
-    "12:30AM",
-    "1:00AM",
-    "1:30AM",
-    "2:00AM",
+    "10:00PM", "10:30PM", "11:00PM", "11:30PM", "12:00AM", "12:30AM", "1:00AM", "1:30AM", "2:00AM"
   ];
+  
 
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thus", "Fri"];
 
@@ -210,7 +164,7 @@ const Last = () => {
             ⬅Previous Week
           </button>
         </div>
-        <p> {formattedDate2}</p>
+        <p > {formattedDate2}</p>
         <div className="btn-2">
           <button style={{ cursor: "pointer" }} onClick={handleNextWeek}>
             Next Week➡
@@ -224,157 +178,156 @@ const Last = () => {
           <option value="UTC-0">UTC-0</option>
           <option value="UTC+1">UTC+1</option>
         </select>
-
-        <div className="days">
-          <form method="POST">
-            <ul>
-              {daysOfWeek.map((day, index) => {
-                const currentDate = new Date(startOfWeek);
-                currentDate.setDate(currentDate.getDate() + index);
-                const formattedDate = formatDate(currentDate);
-                const isWorkingDay =
-                  (index >= 0 && index <= 4 && currentDate >= new Date()) ||
-                  formatDate(new Date()) == formattedDate;
-                return (
-                  <li key={day}>
-                    <div className="aman">
-                      <div
-                        style={{ background: "#80808063", padding: "1.2rem" }}
-                      >
-                        <h3 style={{ color: "red", fontSize: "1.2rem" }}>
-                          {day}
-                        </h3>
-                        <p>{formattedDate}</p>
-                      </div>
-                      {isWorkingDay ? (
-                        <div
-                          className="op"
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "space-around",
-                          }}
-                        >
-                          <div style={{ display: "flex" }}>
-                            <div style={{ display: "flex" }}>
-                              {utc0
-                                ? firstSift.map((timeValue) => (
-                                    <div key={timeValue}>
-                                      <input
-                                        type="checkbox"
-                                        onChange={() =>
-                                          handleCheckboxChange(
-                                            formattedDate,
-                                            timeValue,
-                                            formattedDate
-                                          )
-                                        }
-                                        value={timeValue}
-                                      />
-                                      {timeValue}&nbsp;
-                                    </div>
-                                  ))
-                                : usFirstSift.map((timeValue) => (
-                                    <div key={timeValue}>
-                                      <input
-                                        type="checkbox"
-                                        onChange={() =>
-                                          handleCheckboxChange(
-                                            formattedDate,
-                                            timeValue,
-                                            formattedDate
-                                          )
-                                        }
-                                        value={timeValue}
-                                      />
-                                      {timeValue}&nbsp;
-                                    </div>
-                                  ))}
-                            </div>
-                          </div>
-                          <div style={{ display: "flex" }}>
-                            {utc0
-                              ? secondSift.map((timeValue) => (
-                                  <div key={timeValue}>
-                                    <input
-                                      type="checkbox"
-                                      onChange={() =>
-                                        handleCheckboxChange(
-                                          formattedDate,
-                                          timeValue,
-                                          formattedDate
-                                        )
-                                      }
-                                      value={timeValue}
-                                    />
-                                    {timeValue}&nbsp;
-                                  </div>
-                                ))
-                              : usSecondSift.map((timeValue) => (
-                                  <div key={timeValue}>
-                                    <input
-                                      type="checkbox"
-                                      onChange={() =>
-                                        handleCheckboxChange(
-                                          formattedDate,
-                                          timeValue,
-                                          formattedDate
-                                        )
-                                      }
-                                      value={timeValue}
-                                    />
-                                    {timeValue}&nbsp;
-                                  </div>
-                                ))}
-                          </div>
-                          <div style={{ display: "flex" }}>
-                            {utc0
-                              ? thirdSift.map((timeValue) => (
-                                  <div key={timeValue}>
-                                    <input
-                                      type="checkbox"
-                                      onChange={() =>
-                                        handleCheckboxChange(
-                                          formattedDate,
-                                          timeValue,
-                                          formattedDate
-                                        )
-                                      }
-                                      value={timeValue}
-                                    />
-                                    {timeValue}&nbsp;
-                                  </div>
-                                ))
-                              : usThirdSift.map((timeValue) => (
-                                  <div key={timeValue}>
-                                    <input
-                                      type="checkbox"
-                                      onChange={() =>
-                                        handleCheckboxChange(
-                                          formattedDate,
-                                          timeValue,
-                                          formattedDate
-                                        )
-                                      }
-                                      value={timeValue}
-                                    />
-                                    {timeValue}&nbsp;
-                                  </div>
-                                ))}
-                          </div>
+    <div className="days">
+      <form method="POST">
+        <ul>
+          {daysOfWeek.map((day, index) => {
+            const currentDate = new Date(startOfWeek);
+            currentDate.setDate(currentDate.getDate() + index);
+            const formattedDate = formatDate(currentDate);
+            const isWorkingDay =
+              (index >= 0 && index <= 4 && currentDate >= new Date()) ||
+              formatDate(new Date()) == formattedDate;
+            return (
+              <li key={day}>
+                <div className="aman">
+                  <div
+                    style={{ background: "#80808063", padding: "1.2rem" }}
+                  >
+                    <h3 style={{ color: "red", fontSize: "1.2rem" }}>{day}</h3>
+                    <p>{formattedDate}</p>
+                  </div>
+                  {isWorkingDay ? (
+                    <div
+                      className="op"
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-around",
+                      }}
+                    >
+                      <div style={{ display: "flex" }}>
+                        <div style={{ display: "flex" }}>
+                          {utc0
+                            ? firstSift.map((timeValue) => (
+                                <div key={timeValue}>
+                                  <input
+                                    type="checkbox"
+                                    onChange={() =>
+                                      handleCheckboxChange(
+                                        formattedDate,
+                                        timeValue,
+                                        formattedDate
+                                      )
+                                    }
+                                    value={timeValue}
+                                  />
+                                  {timeValue}&nbsp;
+                                </div>
+                              ))
+                            : usFirstSift.map((timeValue) => (
+                                <div key={timeValue}>
+                                  <input
+                                    type="checkbox"
+                                    onChange={() =>
+                                      handleCheckboxChange(
+                                        formattedDate,
+                                        timeValue,
+                                        formattedDate
+                                      )
+                                    }
+                                    value={timeValue}
+                                  />
+                                  {timeValue}&nbsp;
+                                </div>
+                              ))}
                         </div>
-                      ) : (
-                        <div className="past">Past</div>
-                      )}
+                      </div>
+                      <div style={{ display: "flex" }}>
+                        {utc0
+                          ? secondSift.map((timeValue) => (
+                              <div key={timeValue}>
+                                <input
+                                  type="checkbox"
+                                  onChange={() =>
+                                    handleCheckboxChange(
+                                      formattedDate,
+                                      timeValue,
+                                      formattedDate
+                                    )
+                                  }
+                                  value={timeValue}
+                                />
+                                {timeValue}&nbsp;
+                              </div>
+                            ))
+                          : usSecondSift.map((timeValue) => (
+                              <div key={timeValue}>
+                                <input
+                                  type="checkbox"
+                                  onChange={() =>
+                                    handleCheckboxChange(
+                                      formattedDate,
+                                      timeValue,
+                                      formattedDate
+                                    )
+                                  }
+                                  value={timeValue}
+                                />
+                                {timeValue}&nbsp;
+                              </div>
+                            ))}
+                      </div>
+                      <div style={{ display: "flex" }}>
+                        {utc0
+                          ? thirdSift.map((timeValue) => (
+                              <div key={timeValue}>
+                                <input
+                                  type="checkbox"
+                                  onChange={() =>
+                                    handleCheckboxChange(
+                                      formattedDate,
+                                      timeValue,
+                                      formattedDate
+                                    )
+                                  }
+                                  value={timeValue}
+                                />
+                                {timeValue}&nbsp;
+                              </div>
+                            ))
+                          : usThirdSift.map((timeValue) => (
+                              <div key={timeValue}>
+                                <input
+                                  type="checkbox"
+                                  onChange={() =>
+                                    handleCheckboxChange(
+                                      formattedDate,
+                                      timeValue,
+                                      formattedDate
+                                    )
+                                  }
+                                  value={timeValue}
+                                />
+                                {timeValue}&nbsp;
+                              </div>
+                            ))}
+                      </div>
                     </div>
-                    <br />
-                    <hr />
-                  </li>
-                );
-              })}
-            </ul>
-          </form>
-        </div>
+                  ) : (
+                    <div className="past">Past</div>
+                  )}
+                </div>
+                <br />
+                <hr />
+              </li>
+            );
+          })}
+        </ul>
+      </form>
+    </div>
+
+
       </div>
     </div>
   );
